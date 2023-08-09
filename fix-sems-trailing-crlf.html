@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mississippi SEMS -- Utilities for VotingWorks integration</title>
+</head>
+<body>
+
+  <h1>Mississippi SEMS</h1>
+
+  <p>
+    This utility takes a Mississippi SEMS results file that comes out of the VotingWorks system, and removes the trailing two Carriage Return + Line Feed (CRLF) bytes in order to enable SEMS to import the file.
+  </p>
+
+  <p>
+    <b>All processing is done locally on your machine, no data is ever uploaded to any server.</b>
+  </p>
+  
+<input type="file" id="fileInput">
+<button onclick="processFile()">Remove Trailing CRLF</button>
+<script>
+    function processFile() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert('Please select a file first.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            let content = event.target.result;
+
+            // Check if the content ends with CRLF and remove it
+            if (content.endsWith('\r\n')) {
+                content = content.slice(0, -2);
+            }
+
+            // Create a new Blob and download it
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'processed_' + file.name;
+            link.click();
+        };
+        reader.readAsText(file);
+    }
+</script>
+</body>
+</html>
