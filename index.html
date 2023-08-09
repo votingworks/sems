@@ -4,17 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mississippi SEMS -- Utilities for VotingWorks integration</title>
+    <style>
+     body {
+       font-family: 'Arial', sans-serif;
+       padding: 50px;
+       background-color: #f4f4f4;
+       text-align: center;
+     }
+     button {
+       background-color: #007BFF;
+       color: white;
+       border: none;
+       padding: 10px 20px;
+       border-radius: 5px;
+       cursor: pointer;
+       font-size: 1em;
+       transition: background-color 0.3s;
+     }
+     button:hover {
+       background-color: #0056b3;
+     }
+     input[type="file"] {
+       margin-bottom: 20px;
+     }
+    </style>
 </head>
 <body>
 
-  <h1> Mississippi SEMS</h1>
+  <h1>Mississippi SEMS</h1>
 
   <p>
-    This utility takes a Mississippi SEMS results file that comes out of the VotingWorks system, and removes the trailing two Carriage Return + Line Feed (CRLF) bytes that makes SEMS unhappy.
+    This utility takes a Mississippi SEMS results file that comes out of the VotingWorks system, and removes the trailing two Carriage Return + Line Feed (CRLF) bytes in order to enable SEMS to import the file.
   </p>
 
   <p>
-    <b>All processing is done locally on the machine, no data is ever uploaded to any server.</b>
+    <b>All processing is done locally on your machine, no data is ever uploaded to any server.</b>
   </p>
   
 <input type="file" id="fileInput">
